@@ -1,0 +1,3 @@
+## how to build multiplatform docker
+
+https://docs.docker.com/build/building/multi-platform/
