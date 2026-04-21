@@ -1,3 +1,26 @@
 ## how to build multiplatform docker
 
+For that you require buildx by default in latest docker 29.0 it is configure by default for older docker you might need to configure driver
+
+Below is the link
+
 https://docs.docker.com/build/building/multi-platform/
+
+Below are the command in use you have docker version below then 29.0 
+
+docker version
+
+docker buildx create \
+  --name container-builder \
+  --driver docker-container \
+  --bootstrap --use
+
+
+docker buildx ls
+docker buildx inspect --bootstrap
+
+#### it will push directly to docker registry #######
+#### you can do it without --push but it will save into cached and not show you the docker image using docker image ls ##############
+
+docker buildx build --builder container-builder --platform linux/amd64,linux/arm64  -t test:v1 --push .
+
