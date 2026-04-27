@@ -1,0 +1,20 @@
+# syntax=docker/dockerfile:1
+
+FROM rockylinux:9.3
+
+# Install required packages + OpenJDK 25
+RUN --mount=type=cache,target=/var/cache/dnf \
+    dnf -y update && \
+    dnf install -y \
+        wget \
+        unzip \
+        shadow-utils \
+        java-25-openjdk \
+        java-25-openjdk-devel && \
+    dnf clean all
+
+RUN --mount=type=secret,id=npm_token \
+    --mount=type=secret,id=test_token \
+    cat /run/secrets/npm_token > /file.txt && \
+    cat /run/secrets/test_token > /file1.txt
+

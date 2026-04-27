@@ -38,3 +38,20 @@ mode=max = cache all layers, including intermediate build steps
 
 docker buildx build --builder container-builder -t test:v1 --cache-from type=local,src=/tmp/buildx-cache --cache-to type=local,dest=/tmp/buildx-cache,mode=max --load .
 
+
+
+
+##### how to use secret and cache using builtkit in docker ###########
+
+export NPM_TOKEN="your-npm-token"  --> this is env variable created in linux
+
+/root/new.txt my-test-secret-value  this file has value like this that can be used to pass secret 
+
+export DOCKER_BUILDKIT=1    ---> you can do this for the entry
+
+DOCKER_BUILDKIT=1 docker build --secret id=npm_token,env=NPM_TOKEN   --secret id=test_token,src=/root/new.txt   -t my-rocky-app .        ---> it will pass secrets
+
+
+#### docker build image without cache ########
+
+docker build --no-cache --secret id=npm_token,env=NPM_TOKEN   --secret id=test_token,src=/root/new.txt   -t my-rocky-app .
