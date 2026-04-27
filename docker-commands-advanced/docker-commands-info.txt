@@ -47,7 +47,7 @@ export NPM_TOKEN="your-npm-token"  --> this is env variable created in linux
 
 /root/new.txt my-test-secret-value  this file has value like this that can be used to pass secret 
 
-export DOCKER_BUILDKIT=1    ---> you can do this for the entry
+export DOCKER_BUILDKIT=1    ---> you can do this for the entry but when you need buildkit if you have older docker version in newer version it does not need to enable already enabled
 
 DOCKER_BUILDKIT=1 docker build --secret id=npm_token,env=NPM_TOKEN   --secret id=test_token,src=/root/new.txt   -t my-rocky-app .        ---> it will pass secrets
 
