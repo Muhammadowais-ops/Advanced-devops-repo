@@ -55,3 +55,10 @@ DOCKER_BUILDKIT=1 docker build --secret id=npm_token,env=NPM_TOKEN   --secret id
 #### docker build image without cache ########
 
 docker build --no-cache --secret id=npm_token,env=NPM_TOKEN   --secret id=test_token,src=/root/new.txt   -t my-rocky-app .
+
+
+
+
+##### checking docker history which it used to build ###########
+docker history --no-trunc nginx:latest
+
