@@ -1,0 +1,92 @@
+#! /bin/bash
+
+if ! echo ${HISTSIZE};then
+	echo "run"
+fi
+
+testi=true
+
+if [[ ${testi} != true ]];then
+	echo "hell"
+fi
+
+
+echo $@ $#
+
+
+if [[ $testi == true ]];then
+	echo "he"
+#	exit 0
+fi
+
+
+fid(){
+	echo "exiting with zero"
+#	return 0
+}
+
+fid
+
+
+declare -i ab=10
+
+
+if [[ $ab == 10 ]];then
+	echo "$ab is"
+elif [[ $ab -eq 10 ]]; then
+	echo "$ab is not"
+fi
+
+aryy=(1 2 30.2 "heelo" "ab")
+
+echo "${#aryy[@]}" "${aryy[*]}"
+
+for k in "${aryy[@]}"; do
+    echo "$k is"
+done
+
+
+declare -A ark
+
+ark=(
+  [abc]="new"
+  [de]="mne"
+)
+
+echo "${ark[abc]}"
+echo "${ark[de]}"
+
+
+APP=customer
+VERSION=1.0-$APP
+
+BUILD_ARG=$VERSION="test-${APP}"
+
+[[ -n "$BUILD_ARG" ]] && builds=$(eval "echo \"$BUILD_ARG\"")
+echo $builds
+
+echo $BUILD_ARG
+
+
+
+myvar="hello world"
+
+echo ${myvar/world/new}
+
+echo ${myvar1:-$HISTSIZE}
+
+echo "this ${1:?Name is required}"
+
+values=$(yq '.[] | select(has("name")) | .name + " " + .namespace' deploy.yaml | \
+	while read name namespace;do
+		echo "$name is for"
+		echo "$namespace is for"
+	done)
+echo $values
+
+
+
+for k in $(seq 1 5);do
+	echo "$k is"
+done
+
