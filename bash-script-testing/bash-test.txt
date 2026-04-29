@@ -1,12 +1,13 @@
 #! /bin/bash
 
-if ! echo ${HISTSIZE};then
-	echo "run"
+
+if ! grep -w "yq" /var/log/dnf.log; then      this command always run regardless fail or success after first command execute which is grep only in failure of grep command second
+    echo "yq not found"							statement run which is echo
 fi
 
 testi=true
 
-if [[ ${testi} != true ]];then
+if [[ ${testi} != true ]];then                 If the value of testi is not equal to true, then print hell.
 	echo "hell"
 fi
 
@@ -14,14 +15,14 @@ fi
 echo $@ $#
 
 
-if [[ $testi == true ]];then
-	echo "he"
+if [[ $testi == true ]];then                     use exit 0 for if else after exit 0 or exit 1 below command or script have anything
+	echo "he"										will not run
 #	exit 0
 fi
 
 
 fid(){
-	echo "exiting with zero"
+	echo "exiting with zero"				use when we have function exit will not work need return
 #	return 0
 }
 
@@ -62,23 +63,22 @@ VERSION=1.0-$APP
 
 BUILD_ARG=$VERSION="test-${APP}"
 
-[[ -n "$BUILD_ARG" ]] && builds=$(eval "echo \"$BUILD_ARG\"")
-echo $builds
-
+[[ -n "$BUILD_ARG" ]] && builds=$(eval "echo \"$BUILD_ARG\"")         where we need this eval when we have variable inside variable in that case you need eval
+echo $builds															eval basically run whatever command or thing provide it be careful
 echo $BUILD_ARG
 
 
 
-myvar="hello world"
+myvar="hello world"                               below are variable expansion and changing
 
-echo ${myvar/world/new}
+echo ${myvar/world/new}											replace the word inside variable
 
-echo ${myvar1:-$HISTSIZE}
+echo ${myvar1:-$HISTSIZE}										first run myvar incase it is not define run HISTSIZE so we :- this logic
 
-echo "this ${1:?Name is required}"
+echo "this ${1:?Name is required}"								it is for to check $1 is there or not in case not it will give error and print the ? statement which you provide
 
-values=$(yq '.[] | select(has("name")) | .name + " " + .namespace' deploy.yaml | \
-	while read name namespace;do
+values=$(yq '.[] | select(has("name")) | .name + " " + .namespace' deploy.yaml | \                we can also use while like this in which we pipe it first command success then other command
+	while read name namespace;do																	after using while to read variables and run whatever you like
 		echo "$name is for"
 		echo "$namespace is for"
 	done)
