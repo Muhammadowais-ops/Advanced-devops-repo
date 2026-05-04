@@ -132,3 +132,8 @@ done < <(grep -w yq /var/log/dnf.log)						it is process subsition which will ru
 cat file.txt | grep "error" | sort
 echo ${PIPESTATUS[*]}           ---> can be used to check pipestatus like exit code
 0 1 0                     ---< below is the output
+
+
+shopt --->  In Linux Bash, shopt means shell options. It is used to enable or disable optional Bash behaviors.
+shopt -s option_name 
+shopt -u option_name 
