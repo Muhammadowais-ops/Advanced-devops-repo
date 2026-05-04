@@ -137,3 +137,21 @@ echo ${PIPESTATUS[*]}           ---> can be used to check pipestatus like exit c
 shopt --->  In Linux Bash, shopt means shell options. It is used to enable or disable optional Bash behaviors.
 shopt -s option_name 
 shopt -u option_name 
+
+
+
+nullglob on -------> by default it is off but you can on it in terminal by shopt -s nullglob but it will not enable script so need to same way in script too
+
+behaviour of nullglob when on 
+
+printf "%s \n" *.log      ----> it will return empty string incase this is not on it will return once *.log
+
+using for loop for above nullglob
+
+for files in *.log; do
+	echo "checking $files"
+done
+
+
+
+
