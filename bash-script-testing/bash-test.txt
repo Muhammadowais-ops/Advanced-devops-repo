@@ -126,3 +126,8 @@ do
     echo "$line"
 done < <(grep -w yq /var/log/dnf.log)						it is process subsition which will run like temprory file and then go to while it has its draw back too
 														you don't know it grep execute successfully or not
+
+
+
+cat file.txt | grep "error" | sort
+echo ${PIPESTATUS[*]}           ---> can be used to check pipestatus
