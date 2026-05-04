@@ -175,3 +175,24 @@ make those variables like local scope do not update globally
 but when you use bracket { } like this in function it will effect variable globally so you need to make variable
 local var so global variable not effect
 
+
+
+
+####### trap signal ######
+
+#!/bin/bash
+
+cleanup() {
+  echo "Cleaning resources..."
+  exit 1
+}
+
+trap cleanup SIGINT SIGTERM SIGHUP
+
+echo "PID: $$"
+
+while true
+do
+  echo "Running..."
+  sleep 3
+done
