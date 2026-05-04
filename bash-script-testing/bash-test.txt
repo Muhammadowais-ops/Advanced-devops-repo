@@ -155,3 +155,23 @@ done
 
 
 
+##### status code when we do artithemtic operation #####
+my_func_ar() (
+  a=20
+  b=20
+
+  let "sum = a + b"
+  echo "$sum"
+
+  echo $?
+
+  (( a - b ))
+
+  echo "$? checking"       ---> it will return code 1 because zero value is false other than zero is true for above arthemtic (( a -b ))
+)							-----> but no zero if we assign to variable c=$(( a - b )) like this
+   ---> also imp note
+when we have function in bash which is () this round bracket the variable inside it automatically
+make those variables like local scope do not update globally
+but when you use bracket { } like this in function it will effect variable globally so you need to make variable
+local var so global variable not effect
+
