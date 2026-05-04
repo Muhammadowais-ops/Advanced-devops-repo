@@ -130,4 +130,5 @@ done < <(grep -w yq /var/log/dnf.log)						it is process subsition which will ru
 
 
 cat file.txt | grep "error" | sort
-echo ${PIPESTATUS[*]}           ---> can be used to check pipestatus
+echo ${PIPESTATUS[*]}           ---> can be used to check pipestatus like exit code
+0 1 0                     ---< below is the output
