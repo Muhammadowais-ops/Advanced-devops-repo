@@ -187,7 +187,7 @@ cleanup() {
   exit 1
 }
 
-trap cleanup SIGINT SIGTERM SIGHUP
+trap cleanup SIGINT SIGTERM SIGHUP         ---> you can use kill -l to check all signals. Trap is usually for signal trap on which signal behaviour should be
 
 echo "PID: $$"
 
